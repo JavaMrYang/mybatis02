@@ -1,5 +1,8 @@
-package org.apache.ibatis.reflection;
+package org.apache.ibatis.reflection.factory;
 
+import org.apache.ibatis.reflection.ReflectionException;
+
+import java.io.Serializable;
 import java.lang.reflect.Constructor;
 import java.util.*;
 
@@ -9,7 +12,7 @@ import java.util.*;
  * 默认对象工厂，所有对象都要由工厂来产生
  * @date :2021/1/29/029 23:43
  **/
-public class DefaultObjectFactory implements ObjectFactory{
+public class DefaultObjectFactory implements ObjectFactory, Serializable {
 
     //默认没有属性可以设置
     @Override
@@ -68,7 +71,7 @@ public class DefaultObjectFactory implements ObjectFactory{
     }
 
     //1.解析接口,将interface转为实际class
-    protected <T> Class<?> resolveInterface(Class<T> type) {
+    protected  Class<?> resolveInterface(Class<?> type) {
         Class<?> classToCreate=null;
         if(type==List.class||type== Collection.class||type==Iterable.class){
             //List|Collection|Iterable-->ArrayList
@@ -90,7 +93,8 @@ public class DefaultObjectFactory implements ObjectFactory{
     }
 
     @Override
-    public <T> T isCollection(Class<T> type) {
-        return null;
+    public <T> boolean isCollection(Class<T> type) {
+        //是否是Collection的子类
+        return Collection.class.isAssignableFrom(type);
     }
 }

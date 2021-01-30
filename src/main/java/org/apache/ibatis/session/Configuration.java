@@ -1,8 +1,7 @@
 package org.apache.ibatis.session;
 
 import org.apache.ibatis.mapping.Environment;
-import org.apache.ibatis.reflection.DefaultObjectFactory;
-import org.apache.ibatis.reflection.ObjectFactory;
+import org.apache.ibatis.reflection.factory.DefaultObjectFactory;
 import org.apache.ibatis.type.JdbcType;
 import sun.rmi.runtime.Log;
 
