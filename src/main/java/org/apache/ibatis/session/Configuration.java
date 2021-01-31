@@ -1,7 +1,11 @@
 package org.apache.ibatis.session;
 
+import org.apache.ibatis.binging.MapperRegistry;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.reflection.factory.DefaultObjectFactory;
+import org.apache.ibatis.reflection.factory.ObjectFactory;
+import org.apache.ibatis.reflection.wrapper.DefaultObjectWrapperFactory;
+import org.apache.ibatis.reflection.wrapper.ObjectWrapperFactory;
 import org.apache.ibatis.type.JdbcType;
 import sun.rmi.runtime.Log;
 
@@ -46,5 +50,8 @@ public class Configuration {
     protected Properties variables=new Properties();
     //对象工厂和对象包装器工厂
     protected ObjectFactory objectFactory=new DefaultObjectFactory();
+    protected ObjectWrapperFactory objectWrapperFactory=new DefaultObjectWrapperFactory();
+    //映射注册机
+    protected MapperRegistry mapperRegistry=new MapperRegistry(this);
 
 }

@@ -3,10 +3,9 @@ package org.apache.ibatis.reflection;
 
 import org.apache.ibatis.reflection.factory.ObjectFactory;
 import org.apache.ibatis.reflection.property.PropertyTokenizer;
-import org.apache.ibatis.reflection.wrapper.MapWrapper;
-import org.apache.ibatis.reflection.wrapper.ObjectWrapper;
-import org.apache.ibatis.reflection.wrapper.ObjectWrapperFactory;
+import org.apache.ibatis.reflection.wrapper.*;
 
+import java.util.Collection;
 import java.util.Map;
 
 /**
@@ -41,6 +40,12 @@ public class MetaObject {
         }else if(object instanceof Map){
             //如果是Map型，返回MapWrapper
             this.objectWrapper = new MapWrapper(this, (Map) object);
+        }else if (object instanceof Collection) {
+            //如果是Collection型，返回CollectionWrapper
+            this.objectWrapper = new CollectionWrapper(this, (Collection) object);
+        } else {
+            //除此以外，返回BeanWrapper
+            this.objectWrapper = new BeanWrapper(this, object);
         }
     }
 
