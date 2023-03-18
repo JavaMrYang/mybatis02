@@ -33,4 +33,8 @@ public class MappedStatement {
     private Log statementLog;
     //private LanguageDriver lang;
     private String[] resultSets;
+
+    public String getId() {
+        return this.id;
+    }
 }

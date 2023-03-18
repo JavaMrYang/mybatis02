@@ -49,6 +49,10 @@ public class MetaObject {
         }
     }
 
+    public Object getOriginalObject() {
+        return originalObject;
+    }
+
     public static MetaObject forObject(Object object, ObjectFactory objectFactory, ObjectWrapperFactory objectWrapperFactory) {
         if (object == null) {
             //处理一下null,将null包装起来
@@ -57,6 +61,8 @@ public class MetaObject {
             return new MetaObject(object, objectFactory, objectWrapperFactory);
         }
     }
+
+
 
     //取得值
     //如person[0].birthdate.year
